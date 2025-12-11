@@ -1,13 +1,55 @@
+import ResumeCard from "~/components/ResumeCard";
+import { resumes } from "../../constants/index";
 import type { Route } from "./+types/home";
-import { Welcome } from "../welcome/welcome";
+import Navbar from '~/components/Navbar';
+import { useEffect } from "react";
+import { usePuterStore } from "~/lib/puter";
+import { useNavigate } from "react-router";
+import puter from "@heyputer/puter.js";
 
 export function meta({}: Route.MetaArgs) {
   return [
-    { title: "New React Router App" },
-    { name: "description", content: "Welcome to React Router!" },
+    { title: "DevResumind" },
+    { name: "description", content: "Smart feedback for your dream job" },
   ];
 }
 
+
 export default function Home() {
-  return <Welcome />;
+  const { isLoading , auth } = usePuterStore();
+  // capturing the route when the user tries to access the private route
+  const navigate = useNavigate();
+  
+  useEffect(() =>{
+    if(!auth.isAuthenticated){
+      navigate( '/auth?next=/')
+    }
+  } , [auth.isAuthenticated])
+  
+  // useEffect(() =>{
+  //     puter.ai.chat(`Why did the chicken cross the road?`).then((res) =>{
+  //       console.log(res);
+  //     });
+  //   } , [])
+  
+  return <main className="bg-[url('/images/bg-main.svg')]">
+    <Navbar />
+    <section className="main-section py-16">
+      <div className="page-heading">
+          <h1>Track Your Applications & Resume Ratings</h1>
+          <h2>Review your sumissions and chck AI-powered feedback</h2>
+      </div>
+    
+    {resumes.length > 0 &&(   
+      <div className="resumes-section">
+        {
+          resumes.map((resume : Resume) =>(
+            <ResumeCard key={ resume.id} resume={resume} />
+          ))
+        }
+      </div>
+    )}
+    </section>
+   
+  </main>;
 }
