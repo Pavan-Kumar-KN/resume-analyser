@@ -60,13 +60,17 @@ export default function Home() {
           <h2>Review your sumissions and chck AI-powered feedback</h2>
       </div>
     
-    {resumes.length > 0 &&(   
+    {resumes.length > 0 ?(   
       <div className="resumes-section">
         {
           resumes.map((resume : Resume) =>(
             <ResumeCard key={ resume.id} resume={resume} />
           ))
         }
+      </div>
+    ) : (
+      <div className="resumes-section">
+        <h2>No resumes found</h2>
       </div>
     )}
     </section>
