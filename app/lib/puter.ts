@@ -291,6 +291,7 @@ export const usePuterStore = create<PuterStore>((set, get) => {
   const feedback = async (path: string, message: string) => {
     const puter = getPuter();
     if (!puter) {
+      
       setError("Puter.js not available");
       return;
     }
