@@ -57,10 +57,10 @@ const Resume = () => {
                     <span className="text-gray-800 text-sm font-semibold">Back to Homepage</span>
                 </Link>
             </nav>
-            <div className="flex flex-row w-full max-lg:flex-col-reverse">
-                <section className="feedback-section bg-[url('/images/bg-small.svg') bg-cover h-[100vh] sticky top-0 items-center justify-center">
+            <div className="flex flex-row w-full max-lg:flex-col-reverse ">
+                <section className="feedback-section bg-[url('/images/bg-main.svg')] bg-cover h-[100vh] sticky top-0 items-center justify-center">
                     {imageUrl && resumeUrl && (
-                        <div className="animate-in fade-in duration-1000 gradient-border max-sm:m-0 h-[90%] max-wxl:h-fit w-fit">
+                        <div className="animate-in fade-in duration-1000 gradient-border max-sm:m-0 h-[90%] max-wxl:h-fit w-fit bg-[url('/images/bg-main.svg')]">
                             <a href={resumeUrl} target="_blank" rel="noopener noreferrer">
                                 <img
                                     src={imageUrl}
